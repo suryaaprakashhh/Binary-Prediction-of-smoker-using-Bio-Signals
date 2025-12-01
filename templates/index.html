@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ML Model Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f9f9f9;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<!-- <body>
+    <h1>ML Model Prediction</h1>
+    <form action="/predict" method="post">
+        <label>Age:</label>
+        <input type="text" name="age" required>
+
+        <label>Height (cm):</label>
+        <input type="text" name="height(cm)" required>
+
+        <label>Weight (kg):</label>
+        <input type="text" name="weight(kg)" required>
+
+        <label>Waist (cm):</label>
+        <input type="text" name="waist(cm)" required>
+
+        <label>Eyesight (left):</label>
+        <input type="text" name="eyesight(left)" required>
+
+        <label>Eyesight (right):</label>
+        <input type="text" name="eyesight(right)" required>
+
+        <label>Hearing (left):</label>
+        <input type="text" name="hearing(left)" required>
+
+        <label>Hearing (right):</label>
+        <input type="text" name="hearing(right)" required>
+
+        <label>Systolic:</label>
+        <input type="text" name="systolic" required>
+
+        <label>Relaxation:</label>
+        <input type="text" name="relaxation" required>
+
+        <label>Fasting Blood Sugar:</label>
+        <input type="text" name="fasting blood sugar" required>
+
+        <label>Cholesterol:</label>
+        <input type="text" name="Cholesterol" required>
+
+        <label>Triglyceride:</label>
+        <input type="text" name="triglyceride" required>
+
+        <label>HDL:</label>
+        <input type="text" name="HDL" required>
+
+        <label>LDL:</label>
+        <input type="text" name="LDL" required>
+
+        <label>Hemoglobin:</label>
+        <input type="text" name="hemoglobin" required>
+
+        <label>Urine Protein:</label>
+        <input type="text" name="Urine protein" required>
+
+        <label>Serum Creatinine:</label>
+        <input type="text" name="serum creatinine" required>
+
+        <label>AST:</label>
+        <input type="text" name="AST" required>
+
+        <label>ALT:</label>
+        <input type="text" name="ALT" required>
+
+        <label>GTP:</label>
+        <input type="text" name="Gtp" required>
+
+        <label>Dental Caries (1 for Yes, 0 for No):</label>
+        <input type="text" name="dental caries" required>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+</body> -->
+
+
+<body>
+    <h1>ML Model Prediction</h1>
+    <form action="/predict" method="post">
+        <label>Age:</label>
+        <input type="text" name="age" value="{{ form_values['age'] if form_values else '' }}" required>
+
+        <label>Height (cm):</label>
+        <input type="text" name="height(cm)" value="{{ form_values['height(cm)'] if form_values else '' }}" required>
+
+        <label>Weight (kg):</label>
+        <input type="text" name="weight(kg)" value="{{ form_values['weight(kg)'] if form_values else '' }}" required>
+
+        <label>Waist (cm):</label>
+        <input type="text" name="waist(cm)" value="{{ form_values['waist(cm)'] if form_values else '' }}" required>
+
+        <label>Eyesight (left):</label>
+        <input type="text" name="eyesight(left)" value="{{ form_values['eyesight(left)'] if form_values else '' }}" required>
+
+        <label>Eyesight (right):</label>
+        <input type="text" name="eyesight(right)" value="{{ form_values['eyesight(right)'] if form_values else '' }}" required>
+
+        <label>Hearing (left):</label>
+        <input type="text" name="hearing(left)" value="{{ form_values['hearing(left)'] if form_values else '' }}" required>
+
+        <label>Hearing (right):</label>
+        <input type="text" name="hearing(right)" value="{{ form_values['hearing(right)'] if form_values else '' }}" required>
+
+        <label>Systolic:</label>
+        <input type="text" name="systolic" value="{{ form_values['systolic'] if form_values else '' }}" required>
+
+        <label>Relaxation:</label>
+        <input type="text" name="relaxation" value="{{ form_values['relaxation'] if form_values else '' }}" required>
+
+        <label>Fasting Blood Sugar:</label>
+        <input type="text" name="fasting blood sugar" value="{{ form_values['fasting blood sugar'] if form_values else '' }}" required>
+
+        <label>Cholesterol:</label>
+        <input type="text" name="Cholesterol" value="{{ form_values['Cholesterol'] if form_values else '' }}" required>
+
+        <label>Triglyceride:</label>
+        <input type="text" name="triglyceride" value="{{ form_values['triglyceride'] if form_values else '' }}" required>
+
+        <label>HDL:</label>
+        <input type="text" name="HDL" value="{{ form_values['HDL'] if form_values else '' }}" required>
+
+        <label>LDL:</label>
+        <input type="text" name="LDL" value="{{ form_values['LDL'] if form_values else '' }}" required>
+
+        <label>Hemoglobin:</label>
+        <input type="text" name="hemoglobin" value="{{ form_values['hemoglobin'] if form_values else '' }}" required>
+
+        <label>Urine Protein:</label>
+        <input type="text" name="Urine protein" value="{{ form_values['Urine protein'] if form_values else '' }}" required>
+
+        <label>Serum Creatinine:</label>
+        <input type="text" name="serum creatinine" value="{{ form_values['serum creatinine'] if form_values else '' }}" required>
+
+        <label>AST:</label>
+        <input type="text" name="AST" value="{{ form_values['AST'] if form_values else '' }}" required>
+
+        <label>ALT:</label>
+        <input type="text" name="ALT" value="{{ form_values['ALT'] if form_values else '' }}" required>
+
+        <label>GTP:</label>
+        <input type="text" name="Gtp" value="{{ form_values['Gtp'] if form_values else '' }}" required>
+
+        <label>Dental Caries (1 for Yes, 0 for No):</label>
+        <input type="text" name="dental caries" value="{{ form_values['dental caries'] if form_values else '' }}" required>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text | safe }}
+        </div>
+    {% endif %}
+</body>
+</html>
